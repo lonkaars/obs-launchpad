@@ -1,0 +1,7 @@
+{
+    "MicChannel": "Mic/Aux",
+    "DesktopChannel": "Desktop Audio",
+    "host": "localhost:4826",
+    "password": "",
+    "device": "apc mini"
+}
