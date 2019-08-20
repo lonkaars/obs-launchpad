@@ -52,9 +52,9 @@ function newScene(name) {
     for (let i = 0; i < 64; i++) {
         if (onPadScenes[i] != undefined) {
             if (onPadScenes[i] == name) {
-                output.sendMessage([144, i, 1])
+                output.sendMessage([144, i, config.activeSceneColor])
             } else {
-                output.sendMessage([144, i, 5])
+                output.sendMessage([144, i, getColor(onPadScenes[i])])
             }
         } else {
             output.sendMessage([144, i, 0])
@@ -190,3 +190,8 @@ process.on('SIGINT', () => {
     input.closePort();
     process.exit(0);
 })
+
+getColor = (n) => {
+    var code = n.match(/\$#[0-6]/g);
+    return code ? Number(code[0].substr(2, 1)) : config.inactiveSceneColor;
+}

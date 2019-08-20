@@ -7,6 +7,7 @@
 - Start/Stop streaming/recording
 - Mute/Unmute mics and desktop audio
 - Level adjustment with sliders
+- Custom scene colors
 
 ### How to set up
 
@@ -27,3 +28,15 @@ Compiling to .exe is optional, but if you don't you'll need to run it from cli e
 ### Mapping
 
 The 8x8 grid of pads is automatically filled with scenes from OBS. The current scene is green and the scene you're switching to becomes red during the transition. The first 2 sliders are for desktop and mic audio, the round buttons above are for muting those inputs. The 2 unlabeled buttons on the right are green, and start flashing when you press either one, the top one is for streaming, the bottom one is for recording.
+
+You can put $#_\[color]_ in a scene's name to change the color on the 8x8 grid, these are the color codes:
+
+0. Off
+1. Green
+2. Green (blinking)
+3. Red
+4. Red (Blinking)
+5. Yellow
+6. Yellow (Blinking)
+
+If I for example have a scene called "Starting sceen $#1", the scene when not currently active will appear green on the 8x8 grid
