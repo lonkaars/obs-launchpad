@@ -86,13 +86,13 @@ obs.on('error', err => {
 
 input.on('message', (d, m) => {
     // Audio Sliders
-    if (m[1] == 48) {
+    if (m[1] == 48 && m[0] == 176) {
         obs.send('SetVolume', {
             'source': config.DesktopChannel,
             'volume': m[2] / 127
         })
     }
-    if (m[1] == 49) {
+    if (m[1] == 49 && m[0] == 176) {
         obs.send('SetVolume', {
             'source': config.MicChannel,
             'volume': m[2] / 127
