@@ -16,7 +16,8 @@ for (let i = 0; i < output.getPortCount(); i++) {
 }
 output.openPort(mpcout);
 input.openPort(mpcin);
-var status = "free";
+var Sstatus = "free";
+var Rstatus = "free";
 var order = [];
 for (let x = 0; x < 8; x++) {
     for (let y = 0; y < 8; y++) {
@@ -130,18 +131,18 @@ input.on('message', (d, m) => {
 
     // Record Stream Buttons
     if (m[1] == 87 && m[0] == 144) {
-        if (status == "free") {
+        if (Sstatus == "free") {
             obs.send('StartStreaming')
         }
-        if (status == "streaming") {
+        if (Sstatus == "streaming") {
             obs.send('StopStreaming')
         }
     }
     if (m[1] == 88 && m[0] == 144) {
-        if (status == "free") {
+        if (Rstatus == "free") {
             obs.send('StartRecording')
         }
-        if (status == "recording") {
+        if (Rstatus == "recording") {
             obs.send('StopRecording')
         }
     }
@@ -149,35 +150,35 @@ input.on('message', (d, m) => {
 
 // Stream/record start/stop events
 obs.on('StreamStarting', () => {
-    status = "Sbusy"
+    Sstatus = "busy"
     output.sendMessage([144, 87, 0])
 })
 obs.on('StreamStarted', () => {
-    status = "streaming"
+    Sstatus = "streaming"
     output.sendMessage([144, 87, 2])
 })
 obs.on('StreamStopping', () => {
-    status = "Sbusy"
+    Sstatus = "busy"
     output.sendMessage([144, 87, 0])
 })
 obs.on('StreamStopped', () => {
-    status = "free"
+    Sstatus = "free"
     output.sendMessage([144, 87, 1])
 })
 obs.on('RecordingStarting', () => {
-    status = "Rbusy"
+    Rstatus = "busy"
     output.sendMessage([144, 88, 0])
 })
 obs.on('RecordingStarted', () => {
-    status = "recording"
+    Rstatus = "recording"
     output.sendMessage([144, 88, 2])
 })
 obs.on('RecordingStopping', () => {
-    status = "Rbusy"
+    Rstatus = "busy"
     output.sendMessage([144, 88, 0])
 })
 obs.on('RecordingStopped', () => {
-    status = "free"
+    Rstatus = "free"
     output.sendMessage([144, 88, 1])
 })
 
